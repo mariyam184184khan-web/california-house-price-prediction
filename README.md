@@ -88,6 +88,7 @@ Two models were trained using a pipeline:
 
 ## 📌 Conclusion
 The California Housing dataset analysis shows that **median income and location are the dominant drivers** of house prices, while structural and demographic factors provide additional insights. **Random Forest Regression** provides a robust, accurate model suitable for real-world decision-making in housing investment and policy planning.
+
 ## 🛠️ Libraries / Dependencies
 The following Python libraries were used in this project:
 
