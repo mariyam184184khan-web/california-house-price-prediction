@@ -44,6 +44,10 @@ feature_cols = [
     'Rooms_per_Household', 'Bedrooms_per_Room', 'Population_per_Household'
 ]
 
+Features and Target
+X = df[feature_cols]
+y = df['LogMedHouseVal']
+
 ---
 
 ### Log Transformation of House Prices
