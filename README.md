@@ -1,113 +1,83 @@
 # 🏡 California Housing Price Prediction
 
 ## 📌 Project Overview
-Predicting house prices is a classic problem in data science and machine learning, with real-world applications in real estate, urban planning, and investment.  
-This project analyzes the **California Housing dataset** to:
+This project predicts housing prices in California using the **California Housing dataset**, a popular dataset for regression tasks. The dataset includes socio-economic and geographical features such as median income, house age, average occupancy, and location information.
 
-- Explore key factors influencing housing prices  
-- Build and evaluate predictive models for price estimation  
-- Provide actionable insights for real estate and policy decisions  
+Accurate price predictions help stakeholders—homebuyers, sellers, policymakers, and investors—make informed decisions, while understanding the drivers of housing prices provides insights into economic and demographic trends.
 
 ---
 
 ## 🗂️ Dataset
-The dataset includes socio-economic, geographic, and housing features for various California districts.  
 
-**Key Columns:**
+### Initial Columns
+- `MedInc` – Median income of households in a district  
+- `HouseAge` – Median age of houses in a district  
+- `AveRooms` – Average number of rooms per household  
+- `AveBedrms` – Average number of bedrooms per household  
+- `Population` – Population of the district  
+- `AveOccup` – Average household occupancy  
+- `Latitude` – Geographical latitude  
+- `Longitude` – Geographical longitude  
 
-- `MedInc` — Median income  
-- `HouseAge` — Average house age  
-- `AveRooms` — Average rooms per household  
-- `AveBedrms` — Average bedrooms per household  
-- `Population` — District population  
-- `AveOccup` — Average occupancy per household  
-- `Latitude` — Geographical latitude  
-- `Longitude` — Geographical longitude  
-- `Rooms_per_Household` — Engineered feature: average rooms per household  
-- `Bedrooms_per_Room` — Engineered feature: bedroom-to-room ratio  
-- `Population_per_Household` — Engineered feature: population per household  
+Additional features were engineered for better insights:
+- `Rooms_per_Household`  
+- `Bedrooms_per_Room`  
+- `Population_per_Household`  
 
-**Target Variable:**  
-- `MedHouseVal` (log-transformed for modeling)
+---
 
-```python
-feature_cols = [
-    'MedInc', 'HouseAge', 'AveRooms', 'AveBedrms',
-    'Population', 'AveOccup', 'Latitude', 'Longitude',
-    'Rooms_per_Household', 'Bedrooms_per_Room', 'Population_per_Household'
-]
-y = np.log(df['MedHouseVal'])
 ## 🔍 Exploratory Data Analysis (EDA)
+- **Log Transformation:** Applied to skewed features (e.g., house prices, population) to normalize distributions.  
+- **Correlation Heatmap:** Revealed strong positive correlation between median income and house prices, and negative correlation between bedrooms per room and house value.  
+- **Scatter Plots:**  
+  - Median income strongly drives house prices.  
+  - Geographic factors (latitude & longitude) influence regional housing trends.  
+  - Engineered features highlight housing density and quality.
 
-### Correlation Analysis
-- Strong positive correlation between `MedInc` and house prices  
-- Negative correlation between `Bedrooms_per_Room` and prices  
-- Moderate correlations among other features identified  
-
-### Scatter Plots
-- Median income and geographic location are strong predictors  
-- House age has minor influence  
-
-### Feature Distributions
-- Right-skewed features (e.g., `AveRooms`, `Population`) were log-transformed  
-- Engineered features highlight housing density and quality  
+- **Distribution Analysis:** Features such as income and population show skewness; outliers were handled during preprocessing.
 
 ---
 
-## ⚙️ Modeling Approach
+## 🏗️ Model Building & Evaluation
+Two regression models were implemented:
 
-Two models were trained and evaluated using pipelines:
+### Linear Regression
+- RMSE: 0.333  
+- R² Score: 0.657  
 
-| Model                     | RMSE   | R² Score |
-|----------------------------|--------|-----------|
-| Linear Regression          | 0.333  | 0.657     |
-| Random Forest Regression   | 0.236  | 0.829     |
+### Random Forest Regression
+- RMSE: 0.236  
+- R² Score: 0.829  
 
-**Model Selection:**  
-Random Forest outperformed Linear Regression, capturing non-linear relationships and complex feature interactions, making it ideal for precise predictions.
+**Insights:**
+- Random Forest outperforms Linear Regression, effectively capturing non-linear relationships.
+- Cross-validation confirms model stability: mean RMSE = 0.237, SD = 0.003.
 
 ---
 
-## 📈 Random Forest Analysis
+## 📊 Feature Importance (Random Forest)
+Key predictors of house prices:
+- **Median Income:** Most influential  
+- **Longitude & Latitude:** Capture regional differences  
+- **House Age, Bedrooms per Room, Population per Household:** Secondary influence  
 
-- **Residual Analysis:** Checked residuals vs predicted values for reliability  
-- **Actual vs Predicted:** Strong alignment observed  
-- **Learning Curve:** Model adequately trained without overfitting  
+---
 
-### Feature Importance
-
-| Feature                                      | Importance      |
-|----------------------------------------------|----------------|
-| `MedInc`                                     | Highest        |
-| `Longitude`                                  | High           |
-| `Latitude`                                   | High           |
-| `HouseAge` / `Bedrooms_per_Room` / `Population_per_Household` | Moderate |
-
-### Cross-Validation (5-fold)
-```python
-RMSE scores: [0.238, 0.233, 0.236, 0.241, 0.238]
-Mean RMSE: 0.237
-Std Dev: 0.003
 ## 💡 Business Insights
-- **Median Income** is the dominant driver of housing prices  
-- **Geographic location** significantly impacts value (coastal vs inland areas)  
-- **Secondary factors** such as house age and household composition contribute modestly  
-
-### Recommendations
-1. Focus affordable housing policies on high-demand areas  
-2. Target investments in coastal/metropolitan regions for premium developments  
-3. Incorporate additional features (school quality, transport, employment rates) for better predictive insights  
+- **Income-driven affordability:** Higher-income areas have higher housing prices.  
+- **Location sensitivity:** Coastal and metropolitan regions are premium markets.  
+- **Secondary factors:** House characteristics affect buyer preferences but are less influential.  
 
 ---
 
-## 🛠️ Tech Stack
-- **Language:** Python  
-- **Libraries:** pandas, numpy, matplotlib, seaborn, scikit-learn  
-- **Modeling:** Linear Regression, Random Forest Regression  
-- **EDA & Stats:** Correlation heatmaps, scatter plots, log transformations  
+## ✅ Conclusion & Suggestions
+- Median income and geographic location are primary drivers of housing prices in California.  
+- Random Forest is recommended for precise predictions.  
+
+**Recommendations:**
+1. **Policy:** Focus affordable housing initiatives on high-demand, high-income areas.  
+2. **Investment:** Prioritize coastal/metropolitan areas for premium projects; explore inland areas for affordable housing.  
+3. **Data Enrichment:** Incorporate features like school quality, transport accessibility, and employment rates for better insights.
 
 ---
 
-## 📝 Conclusion
-The project demonstrates that **income levels and geographic positioning** are the primary determinants of California housing prices.  
-Random Forest Regression provides robust predictions, effectively modeling complex feature interactions, and is well-suited for practical applications in real estate planning and policy-making.
