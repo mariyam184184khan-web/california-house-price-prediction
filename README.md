@@ -15,6 +15,42 @@ This project aims to:
 
 ---
 
+## Dataset
+
+📌 **Source**: [California Housing Dataset — scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html)  
+
+### Original Columns
+
+- **MedInc** → Median income in block group  
+- **HouseAge** → Median house age in block group  
+- **AveRooms** → Average number of rooms per household  
+- **AveBedrms** → Average number of bedrooms per household  
+- **Population** → Block group population  
+- **AveOccup** → Average household occupancy  
+- **Latitude** → Block group latitude  
+- **Longitude** → Block group longitude  
+- **MedHouseVal** → Median house value (target variable)  
+
+### Engineered Features
+- **Rooms_per_Household** → Average number of rooms per household  
+- **Bedrooms_per_Room** → Ratio of bedrooms to total rooms  
+- **Population_per_Household** → Average population per household  
+
+### Final Feature Set
+```python
+feature_cols = [
+    'MedInc', 'HouseAge', 'AveRooms', 'AveBedrms',
+    'Population', 'AveOccup', 'Latitude', 'Longitude',
+    'Rooms_per_Household', 'Bedrooms_per_Room', 'Population_per_Household'
+]
+
+---
+
+### Log Transformation of House Prices
+The target variable, **Median House Value**, was right-skewed.  
+A log transformation was applied to normalize its distribution, stabilize variance, and improve model performance.
+
+
 ## Data Preparation and Exploration
 
 ### Exploratory Data Analysis (EDA)
@@ -22,10 +58,6 @@ This project aims to:
   - **Median Income vs. Median House Value**: strong positive correlation.  
   - **Bedrooms per Room vs. Median House Value**: negative correlation, possibly linked to overcrowding.  
   - Redundant correlations (e.g., total rooms vs. total bedrooms) highlighted the need for careful feature selection.
-
-### Log Transformation of House Prices
-The target variable, **Median House Value**, was right-skewed.  
-A log transformation was applied to normalize its distribution, stabilize variance, and improve model performance.
 
 ### Log Transformation of Skewed Features
 Several additional features were log-transformed to normalize distributions and reduce the effect of extreme outliers:
