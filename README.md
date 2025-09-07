@@ -23,8 +23,12 @@ This project aims to:
   - **Bedrooms per Room vs. Median House Value**: negative correlation, possibly linked to overcrowding.  
   - Redundant correlations (e.g., total rooms vs. total bedrooms) highlighted the need for careful feature selection.
 
-### Log Transformation
-Several skewed features were log-transformed to normalize distributions and reduce the effect of extreme outliers:
+### Log Transformation of House Prices
+The target variable, **Median House Value**, was right-skewed.  
+A log transformation was applied to normalize its distribution, stabilize variance, and improve model performance.
+
+### Log Transformation of Skewed Features
+Several additional features were log-transformed to normalize distributions and reduce the effect of extreme outliers:
 - Average Rooms  
 - Population  
 - Population per Household  
@@ -100,4 +104,3 @@ The analysis confirms that **income levels and geographic positioning** are the 
 - **Targeted policy measures**: focus affordable housing initiatives on high-income, high-demand regions.  
 - **Investment strategies**: prioritize coastal/urban projects for premium development, explore inland for affordable housing.  
 - **Data enrichment**: future studies can include employment rates, school quality, and transport access for deeper insights.  
-
