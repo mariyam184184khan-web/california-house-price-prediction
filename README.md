@@ -44,7 +44,7 @@ feature_cols = [
     'Rooms_per_Household', 'Bedrooms_per_Room', 'Population_per_Household'
 ]
 
-Features and Target
+### Features and Target
 X = df[feature_cols]
 y = df['LogMedHouseVal']
 
