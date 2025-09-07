@@ -80,4 +80,15 @@ Key predictors of house prices:
 3. **Data Enrichment:** Incorporate features like school quality, transport accessibility, and employment rates for better insights.
 
 ---
+## 🛠️ Libraries Used
+- pandas  
+- numpy  
+- matplotlib  
+- seaborn  
+- scikit-learn  
+
+## 📈 Evaluation Metrics
+- RMSE (Root Mean Squared Error)  
+- R² Score (Coefficient of Determination)  
+- Cross-Validation RMSE  
 
