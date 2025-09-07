@@ -47,94 +47,123 @@ feature_cols = [
 ]
 X = df[feature_cols]
 y = df['LogMedHouseVal']
-## 🔍 Data Exploration & Preparation
 
-### Exploratory Data Analysis (EDA)
-- Correlation heatmap to visualize pairwise feature relationships
-- **Key observations:**
-  - Median Income positively correlated with Median House Value
-  - Bedrooms per Room negatively correlated with Median House Value
-  - Redundant correlations (e.g., total rooms vs. total bedrooms) highlighted the need for careful feature selection
+🔍 Data Exploration & Preparation
+Exploratory Data Analysis (EDA)
 
-### Log Transformation of House Prices
-- The target variable, `MedHouseVal`, was right-skewed
-- Log transformation applied to normalize distribution and stabilize variance
+Correlation heatmap to visualize pairwise feature relationships
 
-### Log Transformation of Skewed Features
-- Features log-transformed:
-  - Average Rooms
-  - Population
-  - Population per Household
-- Improved variance stability and model interpretability
+Key observations:
 
----
+Median Income positively correlated with Median House Value
 
-## ⚙️ Model Building
-- Models trained using pipelines with preprocessing and encoding:
-  - Linear Regression
-  - Random Forest Regression
+Bedrooms per Room negatively correlated with Median House Value
 
-### Results
-| Model                   | RMSE   | R² Score |
-|--------------------------|--------|----------|
-| Linear Regression        | 0.333  | 0.657    |
-| Random Forest Regression | 0.236  | 0.829    |
+Redundant correlations (e.g., total rooms vs. total bedrooms) highlighted the need for careful feature selection
 
-### Comparative Analysis
-- Random Forest significantly outperforms Linear Regression
-- Captures non-linear relationships and complex feature interactions
-- Linear Regression remains useful for interpretability but explains less variability
-- Final visualizations and evaluations were performed on the **Random Forest model**
+Log Transformation of House Prices
 
----
+The target variable, MedHouseVal, was right-skewed
 
-## 📈 Model Evaluation & Visualizations
-- Residual vs Predicted Plot: errors distributed around zero
-- Histogram of Actual vs Predicted Prices: predicted distribution closely matched actual prices
-- Scatter Plot (Actual vs Predicted): points clustered near the diagonal, with some spread at extremes
-- Learning Curve: strong generalization with mild overfitting, stabilizing as training size increased
-- Feature Importance Plot: highlighted contribution of each predictor
+Log transformation applied to normalize distribution and stabilize variance
 
----
+Log Transformation of Skewed Features
 
-## 🔑 Feature Importance Analysis
-- Median Income → dominant predictor
-- Longitude & Latitude → capture regional differences (coastal vs. inland)
-- House Age, Bedrooms per Room, Population per Household → smaller but notable contributions
-- Overall: income and location are the strongest drivers of housing values
+Features log-transformed:
 
----
+Average Rooms
 
-## 📊 Cross-Validation (Random Forest)
-- RMSE scores (5 folds): `[0.238, 0.233, 0.236, 0.241, 0.238]`
-- Mean RMSE: 0.237
-- Standard Deviation: 0.003
+Population
 
-These results confirm that the model is **accurate, stable, and generalizes well** across data splits.
+Population per Household
 
----
+Improved variance stability and model interpretability
 
-## 💡 Business Insights, Conclusion & Suggestions
+⚙️ Model Building
 
-### Business Insights
-- Income-driven affordability: higher-income areas command higher housing prices
-- Location sensitivity: coastal and urban regions attract premiums, inland areas remain more affordable
-- Secondary factors: structural and demographic features influence buyer preferences but play a supporting role
+Models trained using pipelines with preprocessing and encoding:
 
-### Conclusion
-- Income levels and geographic positioning are primary forces shaping California’s housing market
-- Other features add nuance but are less influential
+Linear Regression
 
-### Suggestions
-- Targeted policy measures: focus affordable housing initiatives on high-income, high-demand regions
-- Investment strategies: prioritize coastal/urban projects for premium development, explore inland for affordable housing
-- Data enrichment: future studies can include employment rates, school quality, and transport access for deeper insights
+Random Forest Regression
 
----
+Results
+Model	RMSE	R² Score
+Linear Regression	0.333	0.657
+Random Forest Regression	0.236	0.829
+Comparative Analysis
 
-## 🛠️ Libraries Used
-- pandas → data manipulation and preprocessing
-- numpy → numerical operations
-- matplotlib → data visualization
-- seaborn → statistical graphics
-- scikit-learn → model building, pipelines, and evaluation
+Random Forest significantly outperforms Linear Regression
+
+Captures non-linear relationships and complex feature interactions
+
+Linear Regression remains useful for interpretability but explains less variability
+
+Final visualizations and evaluations were performed on the Random Forest model
+
+📈 Model Evaluation & Visualizations
+
+Residual vs Predicted Plot: errors distributed around zero
+
+Histogram of Actual vs Predicted Prices: predicted distribution closely matched actual prices
+
+Scatter Plot (Actual vs Predicted): points clustered near the diagonal, with some spread at extremes
+
+Learning Curve: strong generalization with mild overfitting, stabilizing as training size increased
+
+Feature Importance Plot: highlighted contribution of each predictor
+
+🔑 Feature Importance Analysis
+
+Median Income → dominant predictor
+
+Longitude & Latitude → capture regional differences (coastal vs. inland)
+
+House Age, Bedrooms per Room, Population per Household → smaller but notable contributions
+
+Overall: income and location are the strongest drivers of housing values
+
+📊 Cross-Validation (Random Forest)
+
+RMSE scores (5 folds): [0.238, 0.233, 0.236, 0.241, 0.238]
+
+Mean RMSE: 0.237
+
+Standard Deviation: 0.003
+
+These results confirm that the model is accurate, stable, and generalizes well across data splits.
+
+💡 Business Insights, Conclusion & Suggestions
+Business Insights
+
+Income-driven affordability: higher-income areas command higher housing prices
+
+Location sensitivity: coastal and urban regions attract premiums, inland areas remain more affordable
+
+Secondary factors: structural and demographic features influence buyer preferences but play a supporting role
+
+Conclusion
+
+Income levels and geographic positioning are primary forces shaping California’s housing market
+
+Other features add nuance but are less influential
+
+Suggestions
+
+Targeted policy measures: focus affordable housing initiatives on high-income, high-demand regions
+
+Investment strategies: prioritize coastal/urban projects for premium development, explore inland for affordable housing
+
+Data enrichment: future studies can include employment rates, school quality, and transport access for deeper insights
+
+🛠️ Libraries Used
+
+pandas → data manipulation and preprocessing
+
+numpy → numerical operations
+
+matplotlib → data visualization
+
+seaborn → statistical graphics
+
+scikit-learn → model building, pipelines, and evaluation
